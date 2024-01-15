@@ -1,0 +1,96 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "utcValue": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    },
+    "tenantid": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "subscriptionID": {
+      "type": "string"
+    },
+    "sasToken": {
+      "type": "string"
+    },
+    
+    "resourcegroup_name": {
+      "type": "string"
+    },
+    
+
+    "storage_name": {
+      "type": "string"
+    },
+    
+    "storage_skuname": {
+      "type": "string"
+    },
+    "storage_accesstier": {
+      "type": "string"
+    },
+    "storage_kind": {
+      "type": "string"
+    },
+    
+    
+    "templates": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    }
+  },
+  
+
+  "resources": [
+    
+     {
+      "apiVersion": "2018-05-01",
+      "comments": "Azure Storage Account Deployment",
+      "dependsOn": [],
+      "name": "[concat(parameters('storage_name'),parameters('utcValue'))]",
+      "resourceGroup": "[parameters('resourcegroup_name')]",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('templates').artifactslocation, '/',parameters('templates').folders.storageaccount.FolderName, '/',parameters('templates').folders.storageaccount.Version, '/', parameters('templates').files.storageaccount, parameters('sasToken'))]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "storage_name": {
+            "value": "[parameters('storage_name')]"
+          },
+          "storage_skuname": {
+            "value": "[parameters('storage_skuname')]"
+          },
+          "storage_accesstier": {
+            "value": "[parameters('storage_accesstier')]"
+          },
+          "storage_kind": {
+            "value": "[parameters('storage_kind')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "tags": {
+            "value": {
+              "existingtagnames": "[parameters('tags').existingtagnames]",
+              "linkedarmtag": "[concat('version:',parameters('templates').folders.storageaccount.Version)]"
+            }
+          }
+        }
+      },
+      "type": "Microsoft.Resources/deployments"
+    }
+    
+  ],
+  "outputs": {
+
+  }
+}

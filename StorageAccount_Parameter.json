@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "tenantid": {
+      "value": "38539ca5-9f06-4117-a10f-a790b6826197"
+    },
+    "location": {
+      "value": "West Europe"
+    },
+    "subscriptionID": {
+      "value": "6dae7e57-1100-4fe7-b736-42d898d46210"
+    },
+
+
+    "resourcegroup_name": {
+      "value": "RG_ARM_Template_Test"
+    },
+    
+    
+    "storage_name": {
+      "value": "testsa202002"
+    },
+    
+    "storage_skuname": {
+      "value": "Standard_LRS"
+    },
+    "storage_accesstier": {
+      "value": "Hot"
+    },
+    "storage_kind": {
+      "value": "StorageV2"
+    },
+   
+    
+    "sasToken": {
+      "value": "?sv=2018-03-28&ss=b&srt=sco&sp=r&se=2020-09-11T21:20:05Z&st=2019-09-11T13:20:05Z&spr=https&sig=KyrTzrfoaQLb7d8MfNmNUX65JWWDxrSiHu60Q3%2FOlTI%3D"
+    },
+    "templates": {
+      "value": {
+        "artifactslocation": "https://cseusdevsalinkedarm001.blob.core.windows.net",
+        "files": {
+         "storageaccount": "storageaccount.json"
+        },
+        "folders": {
+          
+
+          "storageaccount": {
+            "FolderName": "linkedarm/StorageAccount",
+            "Version": "103"
+          }
+          
+        }
+      }
+    },
+    "tags": {
+      "value": {
+        "existingtagnames": {
+          "applicationid": "TESTID001",
+          "busineesservice": "One Platform Linked ARM Templates",
+          "chargecode": "TESTCODE001",
+          "environment": "Sandbox",
+          "ticketnumber": "TKTNO001",
+          "applicationname": "TESTAPP",
+          "approvername": "TESTApprover",
+          "requestername": "TESTRequester",
+          "supportteam": "TESTTeam",
+          "Deployment_Date": "[utcNow()]"
+        },
+        "linkedarmtag": "NA"
+      }
+    }
+  }
+}
